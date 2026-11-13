@@ -13,7 +13,7 @@
   h2{font-size:15px;font-weight:500;color:#999;text-transform:uppercase;letter-spacing:.12em;margin:40px 0 14px}
   h2 + .sub{margin:-8px 0 14px;font-size:14px;color:#666}
   #shorts{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-  .v.ig{aspect-ratio:auto;height:640px;background:#fff}
+  #shorts .instagram-media{margin:0!important;min-width:0!important;width:100%!important}
   .videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
   .v{aspect-ratio:16/9;background:#1a1a1a;border-radius:8px;overflow:hidden}
   .v.short{aspect-ratio:9/16}
@@ -62,10 +62,20 @@ function fill(boxId, ids, src, cls) {
   });
 }
 const yt = id => `https://www.youtube-nocookie.com/embed/${id}`;
-const ig = id => `https://www.instagram.com/p/${id}/embed`;
 fill("filmmaking", filmmaking, yt);
 fill("youtube", youtube, yt);
-fill("shorts", reels, ig, "ig");
+// Reels: embed oficial de Instagram (ajusta solo su altura)
+const reelBox = document.getElementById("shorts");
+reels.forEach(id => {
+  const q = document.createElement("blockquote");
+  q.className = "instagram-media";
+  q.setAttribute("data-instgrm-permalink", `https://www.instagram.com/p/${id}/`);
+  q.setAttribute("data-instgrm-version", "14");
+  reelBox.append(q);
+});
+const s = document.createElement("script");
+s.async = true; s.src = "https://www.instagram.com/embed.js";
+document.body.append(s);
 </script>
 </body>
 </html>
