@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>framedbyraf — Rafa</title>
+<style>
+  body{margin:0;background:#0e0e0e;color:#eee;font-family:system-ui,-apple-system,sans-serif}
+  main{max-width:900px;margin:0 auto;padding:56px 20px}
+  h1{margin:0;font-size:28px;font-weight:600}
+  p{margin:6px 0 32px;color:#999}
+  a{color:#eee}
+  h2{font-size:15px;font-weight:500;color:#999;text-transform:uppercase;letter-spacing:.12em;margin:40px 0 14px}
+  h2 + .sub{margin:-8px 0 14px;font-size:14px;color:#666}
+  #shorts{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .v.ig{aspect-ratio:auto;height:640px;background:#fff}
+  .videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .v{aspect-ratio:16/9;background:#1a1a1a;border-radius:8px;overflow:hidden}
+  .v.short{aspect-ratio:9/16}
+  .v iframe{width:100%;height:100%;border:0}
+  .v.empty{display:grid;place-items:center;color:#555;font-size:13px}
+  footer{margin-top:40px;color:#999;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Rafa — framedbyraf</h1>
+  <p>Filmmaker y editor. Edición para YouTube, shorts y color grading.</p>
+
+  <h2>Documentales</h2>
+  <p class="sub">Grabación, edición y sound design.</p>
+  <div class="videos" id="filmmaking"></div>
+
+  <h2>YouTube</h2>
+  <p class="sub">Grabados y editados por mí.</p>
+  <div class="videos" id="youtube"></div>
+
+  <h2>Reels</h2>
+  <p class="sub">Grabados y editados por mí.</p>
+  <div class="videos" id="shorts"></div>
+
+  <footer>
+    <a href="https://www.youtube.com/@framedbyraf">YouTube</a> ·
+    <a href="https://instagram.com/framedbyraf">Instagram</a>
+  </footer>
+</main>
+
+<script>
+// Pon aquí los IDs de YouTube (lo que va después de "v=" o de "shorts/")
+// YouTube: lo que va después de "v=". Instagram: lo que va después de "/p/" o "/reel/"
+const filmmaking = ["yerEuhPgVWc", "TeJwXz-VjDE"];
+const youtube    = ["kARtxMTb3_0", "MY7Zx3bJEyY"];
+const reels      = ["Dev0GhPOf__", "DdEZ9t_imNe"];
+
+function fill(boxId, ids, src, cls) {
+  const box = document.getElementById(boxId);
+  ids.forEach(id => {
+    const d = document.createElement("div");
+    d.className = "v" + (cls ? " " + cls : "");
+    d.innerHTML = `<iframe src="${src(id)}" loading="lazy" allowfullscreen></iframe>`;
+    box.append(d);
+  });
+}
+const yt = id => `https://www.youtube-nocookie.com/embed/${id}`;
+const ig = id => `https://www.instagram.com/p/${id}/embed`;
+fill("filmmaking", filmmaking, yt);
+fill("youtube", youtube, yt);
+fill("shorts", reels, ig, "ig");
+</script>
+</body>
+</html>
