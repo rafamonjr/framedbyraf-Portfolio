@@ -19,6 +19,14 @@
   .v.short{aspect-ratio:9/16}
   .v iframe{width:100%;height:100%;border:0}
   .v.empty{display:grid;place-items:center;color:#555;font-size:13px}
+  .profiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .profile{display:flex;align-items:center;gap:14px;padding:16px;background:#1a1a1a;border-radius:8px;text-decoration:none}
+  .profile:hover{background:#222}
+  .avatar{width:52px;height:52px;border-radius:50%;padding:2px;background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7);flex-shrink:0}
+  .avatar span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:#0e0e0e;font-weight:600;font-size:20px}
+  .profile b{display:block;font-weight:600}
+  .profile small{color:#999}
+  .profile .go{margin-left:auto;font-size:13px;padding:7px 14px;border-radius:6px;background:#eee;color:#0e0e0e;font-weight:500}
   footer{margin-top:40px;color:#999;font-size:14px}
 </style>
 </head>
@@ -38,6 +46,9 @@
   <h2>Reels</h2>
   <p class="sub">Grabados y editados por mí.</p>
   <div class="videos" id="shorts"></div>
+
+  <h2>Instagram</h2>
+  <div class="profiles" id="profiles"></div>
 
   <footer>
     <a href="https://www.youtube.com/@framedbyraf">YouTube</a> ·
@@ -64,6 +75,20 @@ function fill(boxId, ids, src, cls) {
 const yt = id => `https://www.youtube-nocookie.com/embed/${id}`;
 fill("filmmaking", filmmaking, yt);
 fill("youtube", youtube, yt);
+// Perfiles de Instagram
+const profiles = [
+  { user: "framedbyraf", desc: "Filmmaking y viajes" },
+  { user: "", desc: "Personal" },   // pon aquí tu usuario personal
+];
+const pBox = document.getElementById("profiles");
+profiles.filter(p => p.user).forEach(p => {
+  const a = document.createElement("a");
+  a.className = "profile"; a.href = `https://instagram.com/${p.user}`; a.target = "_blank";
+  a.innerHTML = `<div class="avatar"><span>${p.user[0].toUpperCase()}</span></div>
+    <div><b>@${p.user}</b><small>${p.desc}</small></div><span class="go">Ver perfil</span>`;
+  pBox.append(a);
+});
+
 // Reels: embed oficial de Instagram (ajusta solo su altura)
 const reelBox = document.getElementById("shorts");
 reels.forEach(id => {
