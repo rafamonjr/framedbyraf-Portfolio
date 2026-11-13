@@ -12,8 +12,12 @@
   a{color:#eee}
   h2{font-size:15px;font-weight:500;color:#999;text-transform:uppercase;letter-spacing:.12em;margin:40px 0 14px}
   h2 + .sub{margin:-8px 0 14px;font-size:14px;color:#666}
-  #shorts{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-  #shorts .instagram-media{margin:0!important;min-width:0!important;width:100%!important}
+  #shorts{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .reel{position:relative;display:grid;place-items:center;aspect-ratio:9/16;border-radius:8px;overflow:hidden;text-decoration:none;
+    background:linear-gradient(160deg,#2a2a2a,#121212) center/cover}
+  .reel .play{width:56px;height:56px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.5)}
+  .reel .play::after{content:"";display:block;margin:18px 0 0 22px;border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent}
+  .reel .lbl{position:absolute;bottom:14px;font-size:13px;color:#ddd}
   .videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
   .v{aspect-ratio:16/9;background:#1a1a1a;border-radius:8px;overflow:hidden}
   .v.short{aspect-ratio:9/16}
@@ -89,18 +93,20 @@ profiles.filter(p => p.user).forEach(p => {
   pBox.append(a);
 });
 
-// Reels: embed oficial de Instagram (ajusta solo su altura)
+// Reels: tarjetas que abren el reel en Instagram.
+// Para poner portada, guarda una imagen en la carpeta thumbs/ y pon su nombre en "img".
+const reelCards = [
+  { id: "Dev0GhPOf__", img: "" },
+  { id: "DdEZ9t_imNe", img: "" },
+];
 const reelBox = document.getElementById("shorts");
-reels.forEach(id => {
-  const q = document.createElement("blockquote");
-  q.className = "instagram-media";
-  q.setAttribute("data-instgrm-permalink", `https://www.instagram.com/p/${id}/`);
-  q.setAttribute("data-instgrm-version", "14");
-  reelBox.append(q);
+reelCards.forEach(r => {
+  const a = document.createElement("a");
+  a.className = "reel"; a.href = `https://www.instagram.com/p/${r.id}/`; a.target = "_blank";
+  if (r.img) a.style.backgroundImage = `url(thumbs/${r.img})`;
+  a.innerHTML = `<span class="play"></span><span class="lbl">Ver reel en Instagram</span>`;
+  reelBox.append(a);
 });
-const s = document.createElement("script");
-s.async = true; s.src = "https://www.instagram.com/embed.js";
-document.body.append(s);
 </script>
 </body>
 </html>
