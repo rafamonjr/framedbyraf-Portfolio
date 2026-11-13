@@ -12,7 +12,7 @@
   /* portada */
   .hero{position:relative;height:78vh;min-height:420px;background:url(img/hero.jpg) center/cover;display:flex;align-items:flex-end}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.15) 30%,#0e0e0e 100%)}
-  .hero-in{position:relative;z-index:1;max-width:960px;width:100%;margin:0 auto;padding:0 20px 40px;display:flex;align-items:center;gap:18px;box-sizing:border-box}
+  .hero-in{position:relative;z-index:1;max-width:960px;width:100%;margin:0 auto;padding:0 20px 40px;display:flex;align-items:flex-end;gap:18px;box-sizing:border-box}
   .hero img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid #eee}
   h1{margin:0;font-size:30px;font-weight:600}
   .hero p{margin:4px 0 0;color:#bbb}
@@ -48,6 +48,14 @@
   .profile small{color:#999}
   .profile .go{margin-left:auto;font-size:13px;padding:7px 14px;border-radius:6px;background:#eee;color:#0e0e0e;font-weight:500}
 
+  .ytbtn{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:10px 18px;background:#ff0033;color:#fff;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px}
+  .ytbtn:hover{background:#e0002d}
+  .ytbtn span{border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent}
+  .profile.yt{background:#2a0a0f;border:1px solid #ff0033}
+  .profile.yt:hover{background:#3a0d14}
+  .profile.yt .go{background:#ff0033;color:#fff}
+  .ytlogo{width:52px;height:52px;border-radius:12px;background:#ff0033;flex-shrink:0;display:grid;place-items:center}
+  .ytlogo::after{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
   footer{margin-top:48px;color:#999;font-size:14px}
 
   @media (max-width:640px){
@@ -64,6 +72,7 @@
     <div>
       <h1>Rafa — framedbyraf</h1>
       <p>Filmmaker y editor. Edición para YouTube, shorts y color grading.</p>
+      <a class="ytbtn" href="https://www.youtube.com/@framedbyraf" target="_blank"><span></span>Ver mi canal de YouTube</a>
     </div>
   </div>
 </header>
@@ -100,7 +109,7 @@
     <p>Edito y etalono en DaVinci Resolve Studio. Me encargo del montaje, el sonido y el color para que el vídeo tenga ritmo y una identidad visual propia.</p>
   </div>
 
-  <h2>Instagram</h2>
+  <h2>Redes</h2>
   <div class="profiles" id="profiles"></div>
 
   <footer>
@@ -124,7 +133,7 @@ const reels = [
 // Perfiles de Instagram
 const profiles = [
   { user: "framedbyraf", desc: "Filmmaking y viajes", img: "img/avatar.jpg" },
-  { user: "", desc: "Personal" },   // pon aquí tu usuario personal
+  { user: "rafamonjr", desc: "Personal", img: "img/avatar-personal.jpg" },
 ];
 
 function fill(boxId, ids) {
@@ -149,6 +158,10 @@ reels.forEach(r => {
 });
 
 const pBox = document.getElementById("profiles");
+const yt = document.createElement("a");
+yt.className = "profile yt"; yt.href = "https://www.youtube.com/@framedbyraf"; yt.target = "_blank";
+yt.innerHTML = `<div class="ytlogo"></div><div><b>@framedbyraf</b><small>Canal de YouTube</small></div><span class="go">Ver canal</span>`;
+pBox.append(yt);
 profiles.filter(p => p.user).forEach(p => {
   const a = document.createElement("a");
   a.className = "profile"; a.href = `https://instagram.com/${p.user}`; a.target = "_blank";
