@@ -48,6 +48,8 @@
   .edit img{width:100%;border-radius:8px;display:block}
   .edit p{color:#aaa;line-height:1.6;margin:0}
 
+  .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .tools span{padding:7px 14px;border:1px solid #333;border-radius:999px;font-size:14px;color:#ddd;background:#161616}
   .profiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
   .profile{display:flex;align-items:center;gap:14px;padding:16px;background:#1a1a1a;border-radius:8px;text-decoration:none}
   .profile:hover{background:#222}
@@ -161,7 +163,12 @@
   <h2>Edición y color</h2>
   <div class="edit">
     <img src="img/editing.jpg" alt="Editando en DaVinci Resolve" loading="lazy">
-    <p>Edito todo en DaVinci Resolve. Montaje, sonido y color grading, para que el vídeo tenga ritmo y un look que se reconozca.</p>
+    <div>
+      <p>Edito sobre todo en DaVinci Resolve. Montaje, sonido y color grading, para que el vídeo tenga ritmo y un look que se reconozca.</p>
+      <div class="tools">
+        <span>DaVinci Resolve</span><span>CapCut</span><span>Sony Vegas Pro</span><span>Photoshop</span>
+      </div>
+    </div>
   </div>
 
   <h2>Redes</h2>
